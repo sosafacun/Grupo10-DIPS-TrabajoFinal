@@ -1,0 +1,15 @@
+{
+  "login": "https://app.bookdbqa.online/login",
+  "home": "https://app.bookdbqa.online/",
+  "shoppingCart": "https://app.bookdbqa.online/shopping-cart",
+  "checkout": "https://app.bookdbqa.online/checkout",
+  "myOrders": "https://app.bookdbqa.online/myorders",
+  "wishlist": "https://app.bookdbqa.online/wishlist",
+  "bookDetail": "https://app.bookdbqa.online/books/details/2",
+  "apiCart": "https://app.bookdbqa.online/api/shoppingcart/",
+  "apiWishlist": "https://app.bookdbqa.online/api/Wishlist/",
+  "apiCheckout": "https://app.bookdbqa.online/api/CheckOut/",
+  "apiToggleWishlist": "https://app.bookdbqa.online/api/Wishlist/ToggleWishlist/",
+  "rootFrontend": "https://app.bookdbqa.online/",
+  "api": "https://app.bookdbqa.online/api"
+}
