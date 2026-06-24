@@ -41,25 +41,6 @@ describe('Casos de prueba de FRONT', () => {
     cy.get('.mat-mdc-row').eq(0).click()
   })
 
-  it.skip('Borrar item del carrito | Matias Crespo', () => {
-    cy.visit(url.login)
-    cy.login(user.name, user.password)
-    cy.url().should('include', url.home)
-    pageHome.isBookVisible()
-    pageHome.clickAddToCartButton()
-    cy.contains('One Item added to cart').should('be.visible')
-
-    cy.get('.mdc-icon-button.mat-mdc-icon-button.mat-mdc-button-base.mat-unthemed')
-      .contains('shopping_cart')
-      .click()
-
-    cy.get('button[mattooltip="Delete item"]')
-      .first()
-      .click()
-
-    cy.contains('Your shopping cart is empty').should('be.visible')
-  })
-
   it('Eliminar item del carrito | Matias Crespo', () => {
 
     cy.goToHome();
