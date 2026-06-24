@@ -96,7 +96,7 @@ describe('Casos de prueba de FRONT', () => {
   it('Filtrar via slider y verificar todos los precios | Sosa, Facundo Nicolás', () => {
     const targetPrice = 300
 
-    cy.visit(url.home)
+    cy.goToHome();
     pageHome.setPriceFilterSlider(targetPrice)
     pageHome.verifyAllBooksAreUnderPrice(targetPrice)
   })
