@@ -9,11 +9,11 @@ const pageBookDetail = require('../support/page_objects/pageBookDetail')
 
 describe('Casos de prueba de FRONT', () => {
   before(function () {
-    cy.loginAPI(user.name, user.password)
+    cy.apiLogin(user.name, user.password)
   })
 
-  it('Comprar carrito exitosamente y visualizar orden de compra', () => {
-    cy.deleteCartAPI(user.userID, user.token)
+  it('Comprar carrito exitosamente y visualizar orden de compra', function () {
+    cy.deleteCartAPI(user.userID, this.token)
 
     cy.visit(url.login)
     cy.login(user.name, user.password)
@@ -41,23 +41,22 @@ describe('Casos de prueba de FRONT', () => {
   })
 
   it('Borrar item del carrito | Matias Crespo', () => {
-    cy.visit(url.login);
-    cy.login(user.name, user.password);
-    cy.url().should('include', url.home);
-    pageHome.isBookVisible();
-    pageHome.clickAddToCartButton();
-    cy.contains('One Item added to cart').should('be.visible');
+    cy.visit(url.login)
+    cy.login(user.name, user.password)
+    cy.url().should('include', url.home)
+    pageHome.isBookVisible()
+    pageHome.clickAddToCartButton()
+    cy.contains('One Item added to cart').should('be.visible')
 
     cy.get('.mdc-icon-button.mat-mdc-icon-button.mat-mdc-button-base.mat-unthemed')
       .contains('shopping_cart')
-      .click();
+      .click()
 
     cy.get('button[mattooltip="Delete item"]')
       .first()
-      .click();
+      .click()
 
-    cy.contains('Your shopping cart is empty')
-      .should('be.visible');
+    cy.contains('Your shopping cart is empty').should('be.visible')
   })
 
   it('Filtrar por categoría Fantasy y verificar detalle de libro | María Nuñez', () => {
@@ -99,7 +98,7 @@ describe('Casos de prueba de FRONT', () => {
     pageWishlist.isBookVisible()
   })
 
-  it('Filtrar via slider y verificar todos los precios | Sosa, Facundo Nicolás', function () {
+  it('Filtrar via slider y verificar todos los precios | Sosa, Facundo Nicolás', () => {
     const targetPrice = 300
 
     cy.visit(url.home)
