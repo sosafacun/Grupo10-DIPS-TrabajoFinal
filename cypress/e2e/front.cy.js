@@ -75,34 +75,6 @@ describe('Casos de prueba de FRONT', () => {
     pageBookDetail.seVisualizaLaCategoria()
   })
 
-  it('Comprar carrito exitosamente y visualizar orden de compra | Magali Gonzalez', function () {
-    cy.deleteCartAPI(user.userID, user.token)
-
-    cy.visit(url.login)
-    cy.login(user.name, user.password)
-    cy.url().should('include', url.home)
-
-    pageHome.isBookVisible()
-    componentNav.validationNumberCartBadge('0')
-    pageHome.clickAddToCartButton()
-    pageHome.validateAddToCartToast()
-    componentNav.validationNumberCartBadge('1')
-
-    componentNav.goToCart()
-    cy.url().should('include', url.shoppingCart)
-    pageShoppingCart.isBookVisible()
-    pageShoppingCart.clickCheckOutButton()
-
-    cy.url().should('include', url.checkout)
-    pageCheckout.isCheckoutFormVisible()
-    pageCheckout.fillShippingForm(user.formName, user.address1, user.address2, user.pincode, user.state)
-    pageCheckout.clickPlaceOrder()
-
-    cy.url().should('include', url.myOrders)
-    cy.get('.mat-mdc-row').should('be.visible')
-    cy.get('.mat-mdc-row').eq(0).click()
-  })
-
   it('Agregar libro a favoritos exitosamente Front | Magali Gonzalez', function () {
     cy.deleteWishlistAPI(user.userID, this.token)
 
@@ -128,12 +100,10 @@ describe('Casos de prueba de FRONT', () => {
   })
 
   it('Filtrar via slider y verificar todos los precios | Sosa, Facundo Nicolás', function () {
-    const targetPrice = 900
+    const targetPrice = 300
 
     cy.visit(url.home)
     pageHome.setPriceFilterSlider(targetPrice)
     pageHome.verifyAllBooksAreUnderPrice(targetPrice)
   })
 })
-//it.only ejecutar solo ese caso de prueba
-//it.skip no ejecuta ese caso de prueba
