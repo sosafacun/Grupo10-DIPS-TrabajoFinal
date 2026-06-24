@@ -27,6 +27,23 @@ const pageHome = {
   // Verifica el mensaje de confirmación al agregar a wishlist
   validateAddToWishlistToast() {
     cy.contains('Added to Wishlist!!!').should('exist')
+  },
+
+  setPriceFilterSlider(price) {
+    cy.get('input.mdc-slider__input')
+      .invoke('val', price)
+      .trigger('input')
+      .trigger('change')
+  },
+
+  verifyAllBooksAreUnderPrice(maxPrice) {
+    cy.get('mat-card-content p').each(($el) => {
+
+      const priceText = $el.text().replace('₹', '').replace(/,/g, '').trim()
+      const priceValue = parseFloat(priceText)
+      
+      expect(priceValue).to.be.at.most(maxPrice)
+    })
   }
 
 }

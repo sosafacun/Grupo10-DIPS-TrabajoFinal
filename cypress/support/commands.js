@@ -76,35 +76,6 @@ Cypress.Commands.add('APIlogin', (user, password, codeResponse) => {
   });
 });
 
-Cypress.Commands.add('eliminar_carrito', () => {
-  cy.visit(url.login);
-  cy.login(user.name, user.password);
-  cy.url().should('include', url.home);
-  pageHome.isBookVisible();
-  pageHome.clickAddToCartButton();
-  cy.contains('One Item added to cart').should('be.visible');
-
-  cy.get('.mdc-icon-button.mat-mdc-icon-button.mat-mdc-button-base.mat-unthemed')
-    .contains('shopping_cart')
-    .click();
-
-  cy.get('button[mattooltip="Delete item"]')
-    .first()
-    .click();
-
-  cy.contains('Your shopping cart is empty')
-    .should('be.visible');
-});
-
-Cypress.Commands.add('filtrar_fantasy', () => {
-  cy.visit(url.login)
-  cy.login(user.name, user.password);
-  cy.get('app-book-card').should('have.length.greaterThan', 0)
-  cy.contains('Fantasy').click()
-  cy.get('app-book-card').should('have.length.greaterThan', 0)
-  cy.contains('Fantasy').should('be.visible')
-})
-
 Cypress.Commands.add('loginByApi', (apiUrl, username, password) => {
   cy.request({
     method: 'POST',
