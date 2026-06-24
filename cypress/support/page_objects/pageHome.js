@@ -1,12 +1,12 @@
-// support/page_objects/pageHome.js
-
-const BOOK_NAME = 'Harry Potter and the Chamber of Secrets'
-
 const pageHome = {
 
   // Verifica que el libro esté visible en el catálogo
+  isSpecificBookVisible(bookName) {
+    cy.get('app-book-card').contains(bookName).should('be.visible')
+  },
+  
   isBookVisible() {
-    cy.get('app-book-card').contains(BOOK_NAME).should('be.visible')
+    cy.get('app-book-card').should('be.visible')
   },
 
   // Hace click en el botón "Add to Cart" del primer libro
@@ -34,6 +34,12 @@ const pageHome = {
       .invoke('val', price)
       .trigger('input')
       .trigger('change')
+  },
+
+    openShoppingCart() {
+    cy.get('.mdc-icon-button.mat-mdc-icon-button.mat-mdc-button-base.mat-unthemed')
+      .contains('shopping_cart')
+      .click();
   },
 
   verifyAllBooksAreUnderPrice(maxPrice) {

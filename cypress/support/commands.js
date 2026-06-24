@@ -116,3 +116,8 @@ Cypress.Commands.add('getBookList', () => {
     expect(response.body[0]).to.have.property('title')
   })
 })
+
+Cypress.Commands.add('goToHome', () => {
+    cy.visit(url.home);
+    cy.url().should('include', url.home);
+});

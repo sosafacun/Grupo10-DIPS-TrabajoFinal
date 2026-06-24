@@ -6,6 +6,7 @@ const pageShoppingCart = require('../support/page_objects/pageShoppingCart')
 const pageCheckout = require('../support/page_objects/pageCheckout')
 const pageWishlist = require('../support/page_objects/pageWishlist')
 const pageBookDetail = require('../support/page_objects/pageBookDetail')
+const pageCart = require('../support/page_objects/cartPage')
 
 describe('Casos de prueba de FRONT', () => {
   before(function () {
@@ -40,7 +41,7 @@ describe('Casos de prueba de FRONT', () => {
     cy.get('.mat-mdc-row').eq(0).click()
   })
 
-  it('Borrar item del carrito | Matias Crespo', () => {
+  it.skip('Borrar item del carrito | Matias Crespo', () => {
     cy.visit(url.login)
     cy.login(user.name, user.password)
     cy.url().should('include', url.home)
@@ -59,11 +60,24 @@ describe('Casos de prueba de FRONT', () => {
     cy.contains('Your shopping cart is empty').should('be.visible')
   })
 
+  it('Eliminar item del carrito | Matias Crespo', () => {
+
+    cy.goToHome();
+
+    pageHome.isBookVisible();
+    pageHome.clickAddToCartButton();
+    pageHome.openShoppingCart();
+
+    pageCart.deleteFirstItem();
+    pageCart.verifyEmptyCartMessage();
+
+});
+
   it('Filtrar por categoría Fantasy y verificar detalle de libro | María Nuñez', () => {
     cy.visit(url.login)
     cy.login(user.name, user.password)
     cy.url().should('include', url.home)
-    pageHome.isBookVisible()
+    pageHome.isSpecificBookVisible('Harry Potter and the Chamber of Secrets')
     cy.contains('Fantasy').click()
     cy.get('app-book-card').should('have.length.greaterThan', 0)
     pageBookDetail.clickFirstBook()
