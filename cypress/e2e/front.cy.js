@@ -42,6 +42,7 @@ describe('Casos de prueba de FRONT', () => {
     cy.url().should('include', url.myOrders);
     pageMyOrders.verifyOrderIsVisible();
     pageMyOrders.clickFirstOrder();
+    cy.contains(book.bookOneTitle).should('be.visible');
   })
 
   it('Eliminar item del carrito | Matias Crespo', () => {
