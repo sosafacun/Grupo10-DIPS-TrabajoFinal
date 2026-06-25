@@ -1,5 +1,7 @@
 import url from '../fixtures/url.json'
 const pageLogin = require('../support/page_objects/pageLogin')
+const pageHome = require('../support/page_objects/pageHome')
+import { parseCurrencyToFloat } from './utils/currencyParser';
 
 Cypress.Commands.add('login', (name, password) => {
   pageLogin.typeUserName(name)
@@ -120,4 +122,11 @@ Cypress.Commands.add('getBookList', () => {
 Cypress.Commands.add('goToHome', () => {
     cy.visit(url.home);
     cy.url().should('include', url.home);
+});
+
+Cypress.Commands.add('verifyBooksUnderPrice', { prevSubject: 'element' }, (subject, maxPrice) => {
+  cy.wrap(subject).each(($el) => {
+    const priceValue = parseCurrencyToFloat($el.text());
+    expect(priceValue).to.be.at.most(maxPrice);
+  });
 });

@@ -18,7 +18,7 @@ describe('Casos de prueba de APIs', () => {
     })
 
     it('Login API campo incorrecto | Matias Crespo', () => {
-        cy.apiLogin(user.name, 'PasswordIncorrecta', 401)
+        cy.apiLogin(user.name, user.passwordIncorrecta, 401)
     })
 
     it('API | Obtener catálogo de libros | Facundo Sosa', () => {

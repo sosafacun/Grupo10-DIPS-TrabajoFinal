@@ -22,7 +22,7 @@ const pageBookDetail = {
     cy.get('app-book-details').find('button').contains('Add to Cart').should('be.visible')
   },
 
-  seVisualizaLaCategoria() {
+  isCategoryVisible() {
     cy.get('mat-card-content').contains('Fantasy').should('be.visible')
   }
 

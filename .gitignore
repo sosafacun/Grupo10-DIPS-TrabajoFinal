@@ -1,0 +1,4 @@
+*.txt
+*.bat
+node_modules
+*.md

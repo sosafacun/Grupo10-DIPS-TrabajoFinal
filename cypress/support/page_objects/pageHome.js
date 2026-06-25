@@ -4,7 +4,7 @@ const pageHome = {
   isSpecificBookVisible(bookName) {
     cy.get('app-book-card').contains(bookName).should('be.visible')
   },
-  
+
   isBookVisible() {
     cy.get('app-book-card').should('be.visible')
   },
@@ -29,29 +29,19 @@ const pageHome = {
     cy.contains('Added to Wishlist!!!').should('exist')
   },
 
-  setPriceFilterSlider(price) {
-    cy.get('input.mdc-slider__input')
-      .invoke('val', price)
-      .trigger('input')
-      .trigger('change')
-  },
-
-    openShoppingCart() {
+  openShoppingCart() {
     cy.get('.mdc-icon-button.mat-mdc-icon-button.mat-mdc-button-base.mat-unthemed')
       .contains('shopping_cart')
       .click();
   },
 
+  setPriceFilterSlider(price) {
+    cy.get('input.mdc-slider__input').invoke('val', price).trigger('input').trigger('change')
+  },
+
   verifyAllBooksAreUnderPrice(maxPrice) {
-    cy.get('mat-card-content p').each(($el) => {
-
-      const priceText = $el.text().replace('₹', '').replace(/,/g, '').trim()
-      const priceValue = parseFloat(priceText)
-      
-      expect(priceValue).to.be.at.most(maxPrice)
-    })
+    cy.get('mat-card-content p').verifyBooksUnderPrice(maxPrice);
   }
-
 }
 
-module.exports = pageHome
+module.exports = pageHome;
