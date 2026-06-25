@@ -96,7 +96,7 @@ describe('Casos de prueba de FRONT', () => {
     pageWishlist.isBookVisible()
   })
 
-  it('Filtrar via slider y verificar todos los precios sean iguales o estén por debajo del valor del filtro | Sosa, Facundo Nicolás', () => {
+  it('Validar filtro de precio máximo en el catálogo | Sosa, Facundo Nicolás', () => {
     const targetPrice = 250
 
     cy.goToHome();
